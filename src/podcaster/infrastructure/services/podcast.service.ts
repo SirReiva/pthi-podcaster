@@ -39,14 +39,12 @@ export class PodcastApiRestService
     }
 
     const data: PodcastApiResponse = await fetch(
-      `https://api.allorigins.win/get?url=${encodeURIComponent(
-        "https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json"
-      )}`
+      "https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json"
     )
       .then((res) => {
         if (!res.ok)
           throw new Error(`Internal Error: ${res.status} ${res.statusText}`);
-        return res.json().then((data) => JSON.parse(data.contents));
+        return res.json();
       })
       .then((data: PodcastApiResponse) => {
         this.storeCache(data, this.cacheName);
