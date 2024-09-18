@@ -6,6 +6,7 @@ import Card from "@Shared/infrastructure/ui/components/Card";
 import PodcastInfoSection from "../components/PodcastInfoSection";
 import EpisodesTable from "../components/EpisodesTable";
 import Spinner from "@Shared/infrastructure/ui/components/Spinner";
+
 const PodcastPage = () => {
   const { podcastId } = useParams();
   const { data: podcast, isFetching: isLoadingPodcast } = usePodcast(

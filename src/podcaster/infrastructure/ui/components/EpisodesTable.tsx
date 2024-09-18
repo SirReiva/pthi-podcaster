@@ -8,17 +8,21 @@ type Props = {
 };
 
 const formatDuration = (ms: number) => {
-  if (ms < 0) ms = -ms;
+  if (ms === 0) return "-";
   const time = {
     day: Math.floor(ms / 86400000),
     hour: Math.floor(ms / 3600000) % 24,
     minute: Math.floor(ms / 60000) % 60,
     second: Math.floor(ms / 1000) % 60,
   };
-  return Object.entries(time)
+  const result = Object.entries(time)
     .filter((val) => val[1] !== 0 || val[0] === "minute")
     .map(([, val]) => `${val.toString().padStart(2, "0")}`)
     .join(":");
+
+  if (result === "00") return "-";
+
+  return result;
 };
 
 const EpisodesTable = ({ episodes, podcastId }: Props) => {
